@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Administration | Portail Matériel
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/navigation.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+
+</head>
+
+
+<body class="dashboard-body">
+
+    <header class="topbar">
+
+        <div class="topbar-left">
+
+            <a
+                href="dashboard.html"
+                class="dashboard-brand"
+            >
+
+                <div class="brand-logo small">
+                    IT
+                </div>
+
+                <div>
+
+                    <strong>
+                        Portail Matériel
+                    </strong>
+
+                    <span>
+                        Gestion des équipements
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a
+                    href="dashboard.html"
+                    class="nav-link"
+                >
+                    Catalogue
+                </a>
+
+                <a
+                    href="mes-demandes.html"
+                    class="nav-link"
+                >
+                    Mes demandes
+                </a>
+
+                <a
+                    href="admin.html"
+                    class="nav-link active"
+                >
+                    Administration
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <div class="user-menu">
+
+            <div class="user-avatar">
+
+                <span id="user-initial">
+                    A
+                </span>
+
+            </div>
+
+
+            <div class="user-info">
+
+                <strong id="username-display">
+                    Administrateur
+                </strong>
+
+                <span>
+                    Administrateur
+                </span>
+
+            </div>
+
+
+            <button
+                id="logout-button"
+                class="logout-button"
+            >
+                Déconnexion
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="admin-container">
+
+        <section class="admin-page-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    ADMINISTRATION
+                </span>
+
+                <h1>
+                    Gestion du matériel
+                </h1>
+
+                <p>
+                    Traitez les demandes des utilisateurs
+                    et maintenez le catalogue des équipements.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="admin-stats">
+
+            <article class="admin-stat-card">
+
+                <div class="admin-stat-icon pending">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span>
+                        Demandes en attente
+                    </span>
+
+                    <strong id="admin-stat-pending">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="admin-stat-card">
+
+                <div class="admin-stat-icon accepted">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Demandes acceptées
+                    </span>
+
+                    <strong id="admin-stat-accepted">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="admin-stat-card">
+
+                <div class="admin-stat-icon refused">
+                    ×
+                </div>
+
+                <div>
+
+                    <span>
+                        Demandes refusées
+                    </span>
+
+                    <strong id="admin-stat-refused">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="admin-stat-card">
+
+                <div class="admin-stat-icon material">
+                    💻
+                </div>
+
+                <div>
+
+                    <span>
+                        Matériels enregistrés
+                    </span>
+
+                    <strong id="admin-stat-materials">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <section class="admin-tabs">
+
+            <button
+                type="button"
+                class="admin-tab active"
+                data-tab="demandes"
+            >
+                Demandes
+            </button>
+
+            <button
+                type="button"
+                class="admin-tab"
+                data-tab="materiels"
+            >
+                Matériels
+            </button>
+
+        </section>
+
+
+        <section
+            id="demandes-section"
+            class="admin-tab-content"
+        >
+
+            <div class="admin-panel-header">
+
+                <div>
+
+                    <h2>
+                        Demandes des utilisateurs
+                    </h2>
+
+                    <p id="admin-demandes-count">
+                        0 demande
+                    </p>
+
+                </div>
+
+
+                <div class="admin-filter">
+
+                    <select id="admin-status-filter">
+
+                        <option value="">
+                            Tous les statuts
+                        </option>
+
+                        <option value="EN_ATTENTE">
+                            En attente
+                        </option>
+
+                        <option value="ACCEPTEE">
+                            Acceptées
+                        </option>
+
+                        <option value="REFUSEE">
+                            Refusées
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="admin-demandes-loading"
+                class="admin-loading"
+            >
+
+                <span class="large-spinner"></span>
+
+                <p>
+                    Chargement des demandes...
+                </p>
+
+            </div>
+
+
+            <div
+                id="admin-demandes-empty"
+                class="admin-empty hidden"
+            >
+
+                <div class="admin-empty-icon">
+                    📭
+                </div>
+
+                <h3>
+                    Aucune demande
+                </h3>
+
+                <p>
+                    Aucune demande ne correspond
+                    aux critères sélectionnés.
+                </p>
+
+            </div>
+
+
+            <div
+                id="admin-demandes-list"
+                class="admin-demandes-list"
+            ></div>
+
+        </section>
+
+
+        <section
+            id="materiels-section"
+            class="admin-tab-content hidden"
+        >
+
+            <div class="admin-material-layout">
+
+                <section class="admin-material-list-panel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <h2>
+                                Matériels enregistrés
+                            </h2>
+
+                            <p id="admin-materiels-count">
+                                0 matériel
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="admin-materiels-loading"
+                        class="admin-loading"
+                    >
+
+                        <span class="large-spinner"></span>
+
+                        <p>
+                            Chargement des matériels...
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="admin-materiels-list"
+                        class="admin-materiels-list"
+                    ></div>
+
+                </section>
+
+
+                <aside class="admin-material-form-panel">
+
+                    <div class="form-panel-heading">
+
+                        <span
+                            id="material-form-kicker"
+                            class="section-kicker"
+                        >
+                            NOUVEAU MATÉRIEL
+                        </span>
+
+                        <h2 id="material-form-title">
+                            Ajouter un équipement
+                        </h2>
+
+                        <p id="material-form-description">
+                            Renseignez les informations
+                            du matériel à ajouter au catalogue.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        id="material-form"
+                        class="admin-material-form"
+                    >
+
+                        <div class="admin-form-group">
+
+                            <label for="material-name">
+                                Nom du matériel
+                            </label>
+
+                            <input
+                                type="text"
+                                id="material-name"
+                                maxlength="150"
+                                required
+                                placeholder="Ex. Dell Latitude 5420"
+                            >
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="material-category">
+                                Catégorie
+                            </label>
+
+                            <input
+                                type="text"
+                                id="material-category"
+                                maxlength="100"
+                                placeholder="Ex. Ordinateur"
+                            >
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="material-description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="material-description"
+                                rows="4"
+                                placeholder="Décrivez brièvement le matériel..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="material-stock">
+                                Quantité disponible
+                            </label>
+
+                            <input
+                                type="number"
+                                id="material-stock"
+                                min="0"
+                                value="0"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="admin-form-group">
+
+                            <label for="material-photo">
+                                Photo
+                            </label>
+
+                            <input
+                                type="file"
+                                id="material-photo"
+                                accept="image/*"
+                            >
+
+                            <div
+                                id="photo-preview-container"
+                                class="photo-preview-container hidden"
+                            >
+
+                                <img
+                                    id="photo-preview"
+                                    alt="Aperçu du matériel"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="material-form-actions">
+
+                            <button
+                                type="submit"
+                                id="material-submit-button"
+                                class="primary-button"
+                            >
+
+                                <span id="material-submit-text">
+                                    Ajouter le matériel
+                                </span>
+
+                                <span
+                                    id="material-submit-spinner"
+                                    class="spinner hidden"
+                                ></span>
+
+                            </button>
+
+                            <button
+                                type="button"
+                                id="material-cancel-button"
+                                class="material-cancel-button hidden"
+                            >
+                                Annuler la modification
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="material-form-message"
+                            class="message hidden"
+                            role="alert"
+                        ></div>
+
+                    </form>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="admin-toast"
+        class="toast hidden"
+    ></div>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

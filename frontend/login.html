@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Connexion | Portail Matériel
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body class="auth-body">
+
+    <main class="auth-layout">
+
+        <section class="auth-presentation">
+
+            <div class="brand">
+                <div class="brand-logo">
+                    IT
+                </div>
+
+                <div>
+                    <div class="brand-name">
+                        Portail Matériel
+                    </div>
+
+                    <div class="brand-subtitle">
+                        Gestion des équipements informatiques
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="presentation-content">
+
+                <span class="eyebrow">
+                    SIMPLE • RAPIDE • CENTRALISÉ
+                </span>
+
+                <h1>
+                    Vos demandes de matériel,
+                    <span>sans paperasse inutile.</span>
+                </h1>
+
+                <p>
+                    Consultez les équipements disponibles,
+                    effectuez vos demandes et suivez leur
+                    traitement depuis un espace unique.
+                </p>
+
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Disponibilité
+                            </strong>
+
+                            <span>
+                                Consultez le matériel
+                                actuellement disponible.
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ↗
+                        </div>
+
+                        <div>
+                            <strong>
+                                Demandes rapides
+                            </strong>
+
+                            <span>
+                                Sélectionnez plusieurs
+                                équipements en une demande.
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ◷
+                        </div>
+
+                        <div>
+                            <strong>
+                                Suivi en temps réel
+                            </strong>
+
+                            <span>
+                                Retrouvez l'état de toutes
+                                vos demandes.
+                            </span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <p class="presentation-footer">
+                Plateforme interne de gestion
+                du matériel informatique.
+            </p>
+
+        </section>
+
+
+        <section class="auth-form-section">
+
+            <div class="login-card">
+
+                <div class="login-header">
+
+                    <span class="login-badge">
+                        Espace sécurisé
+                    </span>
+
+                    <h2>
+                        Bon retour parmi nous
+                    </h2>
+
+                    <p>
+                        Connectez-vous pour accéder
+                        à votre espace.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="message"
+                    class="message hidden"
+                    role="alert"
+                ></div>
+
+
+                <form
+                    id="login-form"
+                    class="login-form"
+                >
+
+                    <div class="form-group">
+
+                        <label for="username">
+                            Nom d'utilisateur
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                autocomplete="username"
+                                placeholder="Votre nom d'utilisateur"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="label-line">
+
+                            <label for="password">
+                                Mot de passe
+                            </label>
+
+                        </div>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                autocomplete="current-password"
+                                placeholder="Votre mot de passe"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="toggle-password"
+                                class="password-toggle"
+                                aria-label="Afficher le mot de passe"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="login-button"
+                        class="primary-button"
+                    >
+
+                        <span id="login-button-text">
+                            Se connecter
+                        </span>
+
+                        <span
+                            id="login-spinner"
+                            class="spinner hidden"
+                        ></span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="login-help">
+
+                    <span class="help-icon">
+                        i
+                    </span>
+
+                    <p>
+                        Vos identifiants sont fournis
+                        par l'administrateur de la plateforme.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>

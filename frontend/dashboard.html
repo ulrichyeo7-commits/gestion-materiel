@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Tableau de bord | Portail Matériel
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/navigation.css"
+    >
+</head>
+
+<body class="dashboard-body">
+
+    <header class="topbar">
+
+        <div class="topbar-left">
+
+            <a
+                href="dashboard.html"
+                class="dashboard-brand"
+            >
+                <div class="brand-logo small">
+                    IT
+                </div>
+
+                <div>
+                    <strong>
+                        Portail Matériel
+                    </strong>
+
+                    <span>
+                        Gestion des équipements
+                    </span>
+                </div>
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a
+                    href="dashboard.html"
+                    class="nav-link active"
+                >
+                    Catalogue
+                </a>
+
+                <a
+                    href="mes-demandes.html"
+                    class="nav-link"
+                >
+                    Mes demandes
+                </a>
+
+                <a
+                    href="admin.html"
+                    id="admin-nav-link"
+                    class="nav-link hidden"
+                >
+                    Administration
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <div class="user-menu">
+
+            <div class="user-avatar">
+                <span id="user-initial">
+                    U
+                </span>
+            </div>
+
+
+            <div class="user-info">
+                <strong id="username-display">
+                    Utilisateur
+                </strong>
+
+                <span id="role-display">
+                    Chargement...
+                </span>
+            </div>
+
+
+            <button
+                id="logout-button"
+                class="logout-button"
+            >
+                Déconnexion
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    ESPACE MATÉRIEL
+                </span>
+
+                <h1>
+                    Bonjour,
+                    <span id="welcome-username">
+                        utilisateur
+                    </span>
+                    👋
+                </h1>
+
+                <p>
+                    Consultez les équipements disponibles,
+                    sélectionnez ce dont vous avez besoin
+                    et envoyez votre demande en quelques clics.
+                </p>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+
+                        <strong id="materiel-count">
+                            0
+                        </strong>
+
+                        <span>
+                            matériels disponibles
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong id="selection-count">
+                            0
+                        </strong>
+
+                        <span>
+                            éléments sélectionnés
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                <div
+                    class="decoration-circle circle-one"
+                ></div>
+
+                <div
+                    class="decoration-circle circle-two"
+                ></div>
+
+                <span>
+                    💻
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <section class="catalogue-layout">
+
+            <section class="catalogue-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            CATALOGUE
+                        </span>
+
+                        <h2>
+                            Matériels disponibles
+                        </h2>
+
+                        <p>
+                            Recherchez un équipement,
+                            choisissez la quantité souhaitée,
+                            puis ajoutez-le à votre demande.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="catalogue-toolbar">
+
+                    <div class="search-box">
+
+                        <span class="search-icon">
+                            🔎
+                        </span>
+
+                        <input
+                            type="search"
+                            id="search-input"
+                            placeholder="Rechercher un matériel..."
+                        >
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <select id="category-filter">
+
+                            <option value="">
+                                Toutes les catégories
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="catalogue-meta">
+
+                    <span id="catalogue-result-count">
+                        0 résultat
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="catalogue-loading"
+                    class="catalogue-loading"
+                >
+
+                    <span class="large-spinner"></span>
+
+                    <p>
+                        Chargement des matériels...
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="catalogue-empty"
+                    class="catalogue-empty hidden"
+                >
+
+                    <div class="empty-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Aucun matériel trouvé
+                    </h3>
+
+                    <p>
+                        Essayez une autre recherche
+                        ou une autre catégorie.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="materiels-grid"
+                    class="materiels-grid"
+                ></div>
+
+            </section>
+
+
+            <aside
+                id="selection-panel"
+                class="selection-panel"
+            >
+
+                <div class="selection-header">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            MA DEMANDE
+                        </span>
+
+                        <h2>
+                            Votre sélection
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        id="selection-badge"
+                        class="selection-badge"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="selection-empty"
+                    class="selection-empty"
+                >
+
+                    <div class="selection-empty-icon">
+                        🛒
+                    </div>
+
+                    <strong>
+                        Votre sélection est vide
+                    </strong>
+
+                    <p>
+                        Ajoutez un ou plusieurs matériels
+                        depuis le catalogue.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="selection-list"
+                    class="selection-list"
+                ></div>
+
+
+                <div
+                    id="selection-summary"
+                    class="selection-summary hidden"
+                >
+
+                    <div class="summary-line">
+
+                        <span>
+                            Types de matériels
+                        </span>
+
+                        <strong id="summary-types">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Quantité totale
+                        </span>
+
+                        <strong id="summary-quantity">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        id="submit-request-button"
+                        class="primary-button request-button"
+                    >
+
+                        <span id="submit-request-text">
+                            Envoyer la demande
+                        </span>
+
+                        <span
+                            id="submit-request-spinner"
+                            class="spinner hidden"
+                        ></span>
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="request-message"
+                    class="message hidden"
+                    role="alert"
+                ></div>
+
+            </aside>
+
+        </section>
+
+
+        <section
+            id="admin-section"
+            class="admin-section hidden"
+        >
+
+            <div class="admin-banner">
+
+                <div class="admin-banner-icon">
+                    🛠️
+                </div>
+
+
+                <div class="admin-banner-content">
+
+                    <span class="section-kicker">
+                        ADMINISTRATION
+                    </span>
+
+                    <h2>
+                        Gérez les demandes et les équipements
+                    </h2>
+
+                    <p>
+                        Consultez les demandes des utilisateurs,
+                        acceptez-les ou refusez-les et ajoutez
+                        de nouveaux matériels.
+                    </p>
+
+                    <a
+                        href="admin.html"
+                        class="empty-action"
+                    >
+                        Ouvrir l'administration
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="toast"
+        class="toast hidden"
+    ></div>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
